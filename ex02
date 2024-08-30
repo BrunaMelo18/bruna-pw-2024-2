@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Segundo Exemplo</title>
+    <script src="ex02.js"></script>
+  </head>
+  <body>
+    <h1>Alô Mundo!</h1>
+    <h2>Turma de Programação para Web</h2>
+    <a href="#" onclick="exibeMensagem()">Teste 1</a>
+    <a href="#" onclick="exibeMensagem2()">Teste 2</a>
+    <script>
+      let resposta = confirm("Responda com Sim ou Não");
+      console.log("Resposta = " + resposta);
+      function exibeMensagem2() {
+        // minha primeira função que exibe mensagem
+        alert("Olá que está no mesmo arquivo!");
+      }
+    </script>
+  </body>
+</html>
