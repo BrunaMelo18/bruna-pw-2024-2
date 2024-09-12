@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulário de Aluno</title>
+    <script>
+        function transformarEmJSON() {
+            // Pegando os valores dos campos
+            const mat = document.getElementById('mat').value;
+            const nome = document.getElementById('nome').value;
+            const idade = document.getElementById('idade').value;
+            const cpf = document.getElementById('cpf').value;
+
+            // Validação de preenchimento dos campos
+            if (!mat || !nome || !idade || !cpf) {
+                alert('Todos os campos devem ser preenchidos.');
+                return;
+            }
+
+            // Validação de idade como número inteiro
+            if (!Number.isInteger(Number(idade)) || Number(idade) <= 0) {
+                alert('A idade deve ser um número inteiro positivo.');
+                return;
+            }
+
+            // Criando o objeto aluno
+            const aluno = {
+                matricula: mat,
+                nome: nome,
+                idade: idade,
+                cpf: cpf
+            };
+
+            // Exibindo o objeto JSON no elemento <pre>
+            document.getElementById('resultado').textContent = JSON.stringify(aluno, null, 4);
+        }
+    </script>
+</head>
+<body>
+    <h1>Formulário de Aluno</h1>
+    <form onsubmit="event.preventDefault(); transformarEmJSON();">
+        <label for="mat">Matrícula:</label>
+        <input type="text" id="mat" name="mat"><br><br>
+
+        <label for="nome">Nome:</label>
+        <input type="text" id="nome" name="nome"><br><br>
+
+        <label for="idade">Idade:</label>
+        <input type="text" id="idade" name="idade"><br><br>
+
+        <label for="cpf">CPF:</label>
+        <input type="text" id="cpf" name="cpf"><br><br>
+
+        <button type="button" onclick="transformarEmJSON()">Transformar em JSON</button>
+    </form>
+
+    <h2>Resultado:</h2>
+    <pre id="resultado"></pre>
+</body>
+</html>
