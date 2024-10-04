@@ -1,0 +1,88 @@
+// Inicialização do Parse
+Parse.initialize("APP_ID", "JS_KEY"); // Substitua APP_ID e JS_KEY pelos seus valores
+Parse.serverURL = "https://parseapi.back4app.com/";
+
+const expenseForm = document.getElementById("expenseForm");
+const expenseList = document.getElementById("expenseList");
+const totalAmountDisplay = document.getElementById("totalAmount");
+
+let totalAmount = 0;
+
+// Função para listar despesas
+async function fetchExpenses() {
+    const Expense = Parse.Object.extend("Expense");
+    const query = new Parse.Query(Expense);
+    try {
+        const results = await query.find();
+        totalAmount = 0;
+        expenseList.innerHTML = "";
+        results.forEach(expense => {
+            const li = document.createElement("li");
+            li.innerHTML = `
+                <span>${expense.get("description")}</span>
+                <span>R$ ${expense.get("value").toFixed(2)}</span>
+                <button onclick="editExpense('${expense.id}', ${expense.get("value")})">Editar</button>
+                <button onclick="deleteExpense('${expense.id}')">Deletar</button>
+            `;
+            expenseList.appendChild(li);
+            totalAmount += expense.get("value");
+        });
+        totalAmountDisplay.innerText = totalAmount.toFixed(2);
+    } catch (error) {
+        console.error("Error fetching expenses: ", error);
+    }
+}
+
+// Função para adicionar uma despesa
+expenseForm.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const description = document.getElementById("description").value;
+    const value = parseFloat(document.getElementById("value").value);
+    
+    const Expense = Parse.Object.extend("Expense");
+    const expense = new Expense();
+    
+    expense.set("description", description);
+    expense.set("value", value);
+    
+    try {
+        await expense.save();
+        fetchExpenses();
+        expenseForm.reset();
+    } catch (error) {
+        console.error("Error creating expense: ", error);
+    }
+});
+
+// Função para editar uma despesa
+async function editExpense(id, currentValue) {
+    const newValue = prompt("Insira o novo valor:", currentValue);
+    if (newValue !== null) {
+        const Expense = Parse.Object.extend("Expense");
+        const query = new Parse.Query(Expense);
+        try {
+            const expense = await query.get(id);
+            expense.set("value", parseFloat(newValue));
+            await expense.save();
+            fetchExpenses();
+        } catch (error) {
+            console.error("Error updating expense: ", error);
+        }
+    }
+}
+
+// Função para deletar uma despesa
+async function deleteExpense(id) {
+    const Expense = Parse.Object.extend("Expense");
+    const query = new Parse.Query(Expense);
+    try {
+        const expense = await query.get(id);
+        await expense.destroy();
+        fetchExpenses();
+    } catch (error) {
+        console.error("Error deleting expense: ", error);
+    }
+}
+
+// Inicializa o sistema
+fetchExpenses();
