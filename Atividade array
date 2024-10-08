@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adicionar Valores ao Vetor</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        input {
+            padding: 10px;
+            margin-bottom: 10px;
+            width: 200px;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        pre {
+            background-color: #f4f4f4;
+            padding: 10px;
+            max-width: 400px;
+            border: 1px solid #ddd;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Adicionar Valores ao Vetor</h1>
+
+    <input type="number" id="valor" placeholder="Digite um valor" />
+    <button onclick="adicionarValor()">Adicionar</button>
+
+    <h2>Valores no Vetor:</h2>
+    <pre id="valoresVetor"></pre>
+
+    <h2>Média dos Valores:</h2>
+    <pre id="mediaVetor"></pre>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
