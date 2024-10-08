@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Site Responsivo</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <h1>Bem-vindo ao Meu Site Responsivo</h1>
+            <h2>Aproveite a experiência!</h2>
+        </header>
+
+        <main>
+            <p>Esta página é um exemplo simples de como criar um site responsivo usando Media Queries no CSS.</p>
+            <p>Dependendo do tamanho da tela, os elementos vão se adaptar para proporcionar uma melhor usabilidade e visualização.</p>
+            <a href="https://github.com/" target="_blank">Visite meu GitHub</a>
+        </main>
+
+        <hr>
+
+        <section>
+            <h2>Imagem Responsiva</h2>
+            <img src="https://via.placeholder.com/600" alt="Imagem Exemplo">
+        </section>
+
+        <footer>
+            <p>&copy; 2024 - Todos os direitos reservados.</p>
+        </footer>
+    </div>
+
+</body>
+</html>
